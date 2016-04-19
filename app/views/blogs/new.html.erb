@@ -8,7 +8,7 @@
   <%= h.text_area :bodyText, cols: 50, rows: 4, class: "message" %>
   <br />
   <%= h.text_field :fee %>
-  <%= h.hidden_field :user_id, :value => @user%>
+  <%= h.hidden_field :user_id, value: current_user.id%>
 
   <%= h.submit 'add' %>
 <% end %>

@@ -16,6 +16,6 @@ before_action :authenticate_user!
     end
   end
   def blog_params
-    params.require(:blog).permit(:bodyText, :Money, :fee)
+    params.require(:blog).permit(:bodyText, :Money, :fee, :user_id)
   end
 end
