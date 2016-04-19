@@ -14,6 +14,21 @@ before_action :authenticate_user!
     @blog = Blog.new
     authorize User
   end
+
+  def show
+    @blog = Blog.find(params[:id])
+  end
+
+  def update
+    @blog =Blog.find(params[:id])
+
+    if @blog.update_attributes(blog_params)
+      redirect_to root_path, :notice => "good"
+    else
+      redirect_to root_path, :alert => "bad"
+    end
+  end
+
   def create
     @blog = Blog.new(blog_params)
     if @blog.save
@@ -22,7 +37,8 @@ before_action :authenticate_user!
       render(:action => 'new')
     end
   end
+
   def blog_params
-    params.require(:blog).permit(:bodyText, :Money, :fee, :user_id)
+    params.require(:blog).permit(:bodyText, :Money, :fee, :user_id, :flag)
   end
 end
