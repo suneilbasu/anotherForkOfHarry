@@ -1,7 +1,11 @@
 class BlogsController < ApplicationController
 before_action :authenticate_user!
   def index
-    @blogs = Blog.all
+    if params[:blog] and params[:blog][:user_id]
+      @blogs = Blog.search(params[:blog][:user_id])
+    else
+      @blogs = Blog.all
+    end
   end
 
   def new
