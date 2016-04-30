@@ -1,12 +1,23 @@
 <h1>Blog index change1</h1>
+<%= params.inspect %>
 <p>List of all the current blogs</p>
   <%= form_tag blogs_path, :method => 'get' do %>
     <%= collection_select :blog, :user_id, User.all, :id, :firstname, prompt: true %>
+    <%= collection_select :blog, :flag, Blog.all, :flag, :flag %>
     <%= submit_tag "+" %>
     <% end %>
 <% @blogs.each do |harry| %>
   <li><%= harry.bodyText %>
   £<%= harry.fee %>
   <%=harry.user.firstname %>
+  <%= link_to "edit", blog_path(harry) %>
   </li>
+<% end %>
+<h1>Published</h1>
+<% @published_blogs.each do |harry| %>
+<li><%= harry.bodyText %>
+£<%= harry.fee %>
+<%=harry.user.firstname %>
+<%= link_to "edit", blog_path(harry) %>
+</li>
 <% end %>

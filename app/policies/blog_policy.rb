@@ -1,4 +1,4 @@
-class UserPolicy
+class BlogPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -7,10 +7,10 @@ class UserPolicy
   end
 
   def index?
-    @current_user.editor? or @current_user.journalist?
+    user.journalist?
   end
 
   def new?
-    @current_user.editor?
+    user.journalist?
   end
 end

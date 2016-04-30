@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407202333) do
+ActiveRecord::Schema.define(version: 20160419151002) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "bodyText"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160407202333) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.decimal  "Money",      precision: 8, scale: 2
+    t.integer  "flag",                               default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,10 +37,9 @@ ActiveRecord::Schema.define(version: 20160407202333) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "role"
-    t.string   "integer"
     t.string   "firstname"
     t.string   "surname"
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-
+      def store_location
+        session[:return_to] = request.request_uri
+      end
       def user_not_authorized
       	flash[:alert]= "Access Denied."
-      	redirect_to(request.referrer) || root_path
+        redirect_to(session[:return_to] || root_path)
+
+        session[:return_to] = nil
       end
 end

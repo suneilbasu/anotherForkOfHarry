@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'myviews/index'
+
   get 'blogs/index'
 
   get 'blogs/new'
