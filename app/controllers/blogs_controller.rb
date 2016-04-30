@@ -2,9 +2,8 @@ class BlogsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @blogs = Blog.where(nil)
-    @blogs = Blogs.status_check(params[:status_check]) if params[:status_check].present?
-    
+    @blogs = Blog.order(params[:sort])
+    @published_blogs = Blog.published
     authorize User
   end
 
@@ -22,7 +21,7 @@ before_action :authenticate_user!
 
     if @blog.update_attributes(blog_params)
       redirect_to root_path, :notice => "good"
-    else
+  else
       redirect_to root_path, :alert => "bad"
     end
   end

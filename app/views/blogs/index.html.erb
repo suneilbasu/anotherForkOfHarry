@@ -1,21 +1,30 @@
 <h1>Blog index change1</h1>
-<%= params.inspect %>
-<p>List of all the current blogs</p>
-  <%= form_tag blogs_path, :method => 'get' do %>
-    <%= collection_select :blog, :flag, Blog.all, :flag, :flag %>
-    <%= submit_tag "+" %>
-    <% end %>
-<% @blogs.each do |harry| %>
-  <li><%= harry.bodyText %>
-  £<%= harry.fee %>
-  <%=harry.user.firstname %>
-  <%= link_to "edit", blog_path(harry) %>
-  <%=harry.flag %>
+<h2>List of all the current blogs</h2>
 
-  </li>
-<% end %>
+<div class="container">
+        <div class="row col-md-10">
+<table class="table table-striped"
+<tr>
+  <th><%= link_to "Story",:sort => "bodyText" %></th>
+  <th><%= link_to "Fee", :sort=> "Money" %></th>
+  <th><%= link_to "Status", :sort=> "flag" %></th>
+  <th><%= link_to "Update", :sort => "flag" %></th>
+</tr>
+  <% for each in @blogs %>
+  <tr>
+    <td><%= each.bodyText %></td>
+    <td><%= number_to_currency(each.fee)%></td>
+    <td><%= each.flag %></td>
+    <td><%= link_to "edit", blog_path(each)%>
+  </tr>
+  <% end %>
+</table>
+</div>
+</div>
+
+
 <h1>Published</h1>
-  <% @blogs.each do |buck| %>
+  <% @published_blogs.each do |buck| %>
   <li><%= buck.bodyText %>
 £<%= buck.fee %>
 <%=buck.user.firstname %>

@@ -1,10 +1,13 @@
 class Blog < ActiveRecord::Base
   belongs_to :user
-
-  scope :flaged, -> {where(:flag => '0')}
-  scope :status_check, -> (flag) {where flag: flag}
+  enum flag: [:unread, :underreview, :rejected, :redraft, :published]
+  def self.all_that_are(search)
+    where("flag = ?", "#{search}")
+  end
 
   def self.search(search)
     where("user_id LIKE ?","%#{search}")
   end
+
+  scope :published, -> {where(:flag => '4')}
 end

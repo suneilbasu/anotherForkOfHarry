@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
   gem 'has_scope'
+  gem 'will_paginate'
 gem 'devise'
   gem 'devise_roles'
   gem 'bootstrap-sass'
