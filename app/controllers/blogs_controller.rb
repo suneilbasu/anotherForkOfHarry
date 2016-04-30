@@ -2,12 +2,9 @@ class BlogsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-
-    if params[:blog] and params[:blog][:user_id]
-      @blogs = @blogs.status_check(params[:flag]) if params[:flag].present?
-    else
-      @blogs = Blog.all
-    end
+    @blogs = Blog.where(nil)
+    @blogs = Blogs.status_check(params[:status_check]) if params[:status_check].present?
+    
     authorize User
   end
 

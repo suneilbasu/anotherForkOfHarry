@@ -16,10 +16,10 @@
   </li>
 <% end %>
 <h1>Published</h1>
-  <% @blogs.each do |harry| %>
-  <li><%= harry.bodyText %>
-£<%= harry.fee %>
-<%=harry.user.firstname %>
-<%= link_to "edit", blog_path(harry) %>
+  <% @blogs.each do |buck| %>
+  <li><%= buck.bodyText %>
+£<%= buck.fee %>
+<%=buck.user.firstname %>
+<%= link_to "edit", blog_path(buck) %>
 </li>
 <% end %>
