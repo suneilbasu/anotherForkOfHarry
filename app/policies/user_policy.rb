@@ -7,10 +7,10 @@ class UserPolicy
   end
 
   def index?
-    @current_user.editor? or @current_user.journalist?
+    @current_user.editor?
   end
 
   def new?
-    @current_user.editor?
+    @current_user.editor? or @current_user.journalist?
   end
 end

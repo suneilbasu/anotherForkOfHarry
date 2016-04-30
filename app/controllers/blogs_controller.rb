@@ -37,7 +37,7 @@ before_action :authenticate_user!
   def create
     @blog = Blog.new(blog_params)
     if @blog.save
-      redirect_to :action => 'index'
+      redirect_to root_path, :notice => "article added"
     else
       render(:action => 'new')
     end
