@@ -2,7 +2,6 @@
 <%= params.inspect %>
 <p>List of all the current blogs</p>
   <%= form_tag blogs_path, :method => 'get' do %>
-    <%= collection_select :blog, :user_id, User.all, :id, :firstname, prompt: true %>
     <%= collection_select :blog, :flag, Blog.all, :flag, :flag %>
     <%= submit_tag "+" %>
     <% end %>
