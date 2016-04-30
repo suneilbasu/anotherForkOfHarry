@@ -6,6 +6,11 @@ before_action :authenticate_user!
       @blogs = Blog.search(params[:blog][:user_id])
     else
       @blogs = Blog.all
+      @published_blogs = Blog.published
+      @redrafted_blogs = Blog.redraft
+      @rejected_blogs = Blog.rejected
+      @underreview_blogs = Blog.underreview
+      @unread_blogs = Blog.unread
     end
     authorize User
   end
