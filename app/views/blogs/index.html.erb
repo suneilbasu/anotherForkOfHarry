@@ -3,12 +3,12 @@
 
 <div class="container">
         <div class="row col-md-10">
-<table class="table table-striped"
+<table class="table table-striped">
 <tr>
-  <th><%= link_to "Story",:sort => "bodyText" %></th>
-  <th><%= link_to "Fee", :sort=> "Money" %></th>
-  <th><%= link_to "Status", :sort=> "flag" %></th>
-  <th><%= link_to "Update", :sort => "flag" %></th>
+  <th><%= sortable "bodyText","Story" %></th>
+  <th><%= sortable "Fee" %></th>
+  <th><%= sortable "flag", "Status" %></th>
+  <th><%= sortable "flag","Update" %></th>
 </tr>
   <% for each in @blogs %>
   <tr>
@@ -19,6 +19,7 @@
   </tr>
   <% end %>
 </table>
+<%= will_paginate @blogs %>
 </div>
 </div>
 

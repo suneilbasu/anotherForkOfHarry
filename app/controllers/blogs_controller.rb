@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @blogs = Blog.order(params[:sort])
+    @blogs = Blog.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4)
     @published_blogs = Blog.published
     authorize User
   end
@@ -38,4 +38,12 @@ before_action :authenticate_user!
   def blog_params
     params.require(:blog).permit(:bodyText, :Money, :fee, :user_id, :flag)
   end
+
+  private
+  def sort_column
+    params[:sort] || "bodyText"
+  end
+  def sort_direction
+    params[:direction] || "asc"
+ end
 end
