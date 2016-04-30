@@ -1,16 +1,12 @@
 class BlogsController < ApplicationController
 before_action :authenticate_user!
+
   def index
 
     if params[:blog] and params[:blog][:user_id]
-      @blogs = Blog.search(params[:blog][:user_id])
+      @blogs = @blogs.status_check(params[:flag]) if params[:flag].present?
     else
       @blogs = Blog.all
-      @published_blogs = Blog.published
-      @redrafted_blogs = Blog.redraft
-      @rejected_blogs = Blog.rejected
-      @underreview_blogs = Blog.underreview
-      @unread_blogs = Blog.unread
     end
     authorize User
   end

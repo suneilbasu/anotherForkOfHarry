@@ -12,12 +12,12 @@
   <%=harry.user.firstname %>
   <%= link_to "edit", blog_path(harry) %>
   <%=harry.flag %>
-  
+
   </li>
 <% end %>
 <h1>Published</h1>
-<% @published_blogs.each do |harry| %>
-<li><%= harry.bodyText %>
+  <% @blogs.each do |harry| %>
+  <li><%= harry.bodyText %>
 £<%= harry.fee %>
 <%=harry.user.firstname %>
 <%= link_to "edit", blog_path(harry) %>
