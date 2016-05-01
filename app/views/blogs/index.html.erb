@@ -4,7 +4,7 @@
   <div class="row col-md-10">
     <%= form_tag "/blogs", method: :get do %>
     <%= select_tag :flag, options_for_select(Blog.flags.to_a, params[:flag]), include_blank: "status"%>
-    <%= text_field_tag :author, params[:author], placeholder: "user id" %>
+    <%= collection_select :blog, :user_id, User.all, :id, :firstname, prompt: "author" %>
     <%= text_field_tag :keyword, params[:keyword], placeholder: "keyword" %>
       <%= submit_tag "Search" %>
 <% end %>
