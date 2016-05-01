@@ -3,13 +3,12 @@ before_action :authenticate_user!
 
   def index
     @blogs = Blog.where(nil)
-    @blogs = @blogs.status(params[:flag]) if params[:flag].present?
-    @blogs = @blogs.keyword(params[:keyword]) if params[:keyword].present?
-    @blogs = @blogs.author(params[:author]) if params[:author].present?
+    @blogs = @blogs.status(params[:flag]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4) if params[:flag].present?
+    @blogs = @blogs.keyword(params[:keyword]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4) if params[:keyword].present?
+    @blogs = @blogs.author(params[:author]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4) if params[:author].present?
     if params[:blog] and params[:blog][:user_id]
-      @blogs = @blogs.blog(params[:blog][:user_id]) if params[:blog][:user_id].present?
+      @blogs = @blogs.blog(params[:blog][:user_id]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4) if params[:blog][:user_id].present?
     end
-    @published_blogs = Blog.published
     authorize User
 
   end
