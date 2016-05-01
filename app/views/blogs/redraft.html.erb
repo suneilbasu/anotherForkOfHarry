@@ -1,4 +1,4 @@
-<h1>Published</h1>
+<h1>Articles</h1>
 
 <div class="container">
   <div class="row col-md-10">
@@ -17,7 +17,7 @@
         <td><%= each.user.firstname %></td>
         <td><%= number_to_currency(each.fee)%></td>
         <td><%= each.flag %></td>
-        <td><%= %>
+        <td><%= link_to "edit", blog_path(each)%>
       </tr>
       <% end %>
     </table>

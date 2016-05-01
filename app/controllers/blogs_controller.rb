@@ -15,7 +15,9 @@ before_action :authenticate_user!
   def status
     @blogs = Blog.published.paginate(:page => params[:page], :per_page => 4)
   end
-
+  def redraft
+    @blogs = Blog.redraft
+  end
   def new
     @blog = Blog.new
     authorize User

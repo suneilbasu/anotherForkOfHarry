@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'blogs/index'
   get 'blogs/status'
-
+  get 'blogs/redraft'
   get 'blogs/new'
 
   devise_for :users, :controllers => { registrations: 'registrations' }

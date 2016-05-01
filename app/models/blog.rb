@@ -6,4 +6,5 @@ class Blog < ActiveRecord::Base
   scope :keyword,   ->  (keyword)   {where("bodyText like ?","%#{keyword}%")}
   scope :blog,      ->  (blog)      {where user_id: blog}
   scope :published, ->              {where(:flag => '4')}
+  scope :redraft, ->                {where(:flag => '3')}
 end
