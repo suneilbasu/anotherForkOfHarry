@@ -5,6 +5,7 @@ before_action :authenticate_user!
     @blogs = Blog.where(nil)
     @blogs = @blogs.status(params[:flag]) if params[:flag].present?
     @blogs = @blogs.keyword(params[:keyword]) if params[:keyword].present?
+    @blogs = @blogs.author(params[:author]) if params[:author].present?
     @published_blogs = Blog.published
     authorize User
 
