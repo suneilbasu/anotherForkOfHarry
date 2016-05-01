@@ -2,9 +2,15 @@ class BlogsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @blogs = Blog.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 4)
+    @blogs = Blog.where(nil)
+    @blogs = @blogs.status(params[:flag]) if params[:flag].present?
+    @blogs = @blogs.keyword(params[:keyword]) if params[:keyword].present?
     @published_blogs = Blog.published
     authorize User
+
+  end
+  def status
+    @blogs = Blog.published.paginate(:page => params[:page], :per_page => 4)
   end
 
   def new

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row col-md-10">
+    <%= params.inspect %>
+    <table class="table table-striped">
+    <tr>
+      <th><%= sortable "bodyText","Story" %></th>
+      <th><%= sortable "Fee" %></th>
+      <th><%= sortable "flag", "Status" %></th>
+      <th><%= sortable "flag","Update" %></th>
+    </tr>
+    <% for each in @blogs %>
+    <tr>
+      <td><%= each.bodyText %></td>
+      <td><%= number_to_currency(each.fee)%></td>
+      <td><%= each.flag %></td>
+      <td><%= link_to "edit", blog_path(each)%>
+    </tr>
+    <% end %>
+    </table>
+    <%= will_paginate @blogs %>
+  </div>
+</div>
+<form id="live-search-form" method="get" action="<%= search_path %>">
+  <input id="big-search-box" name="q" type="text"/>
+
+</form>
+
+<div id="live-search-results"></div>

@@ -1,11 +1,21 @@
-<h1>Blog index change1</h1>
-<h2>List of all the current blogs</h2>
+<h1>Articles</h1>
 
 <div class="container">
-        <div class="row col-md-10">
+  <div class="row col-md-10">
+    <%= form_tag "/blogs", method: :get do %>
+    <%= select_tag :flag, options_for_select(Blog.flags.to_a, params[:flag]), include_blank: "status"%>
+    <%= collection_select :blog, :user_id, User.all, :id, :firstname, prompt: "author" %>
+    <%=text_field_tag :keyword, params[:keyword], placeholder: "keyword" %>
+      <%= submit_tag "Search" %>
+<% end %>
+
+
+
+
 <table class="table table-striped">
 <tr>
   <th><%= sortable "bodyText","Story" %></th>
+  <th><%= sortable "user_id","Author" %> </th>
   <th><%= sortable "Fee" %></th>
   <th><%= sortable "flag", "Status" %></th>
   <th><%= sortable "flag","Update" %></th>
@@ -13,22 +23,12 @@
   <% for each in @blogs %>
   <tr>
     <td><%= each.bodyText %></td>
+    <td><%= each.user.firstname %></td>
     <td><%= number_to_currency(each.fee)%></td>
     <td><%= each.flag %></td>
     <td><%= link_to "edit", blog_path(each)%>
   </tr>
   <% end %>
 </table>
-<%= will_paginate @blogs %>
 </div>
 </div>
-
-
-<h1>Published</h1>
-  <% @published_blogs.each do |buck| %>
-  <li><%= buck.bodyText %>
-£<%= buck.fee %>
-<%=buck.user.firstname %>
-<%= link_to "edit", blog_path(buck) %>
-</li>
-<% end %>
